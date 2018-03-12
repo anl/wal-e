@@ -244,7 +244,7 @@ class GPGEncryptionFilter(PipelineCommand):
     """ Encrypt using GPG, using the provided public key ID. """
     def __init__(self, key, stdin=PIPE, stdout=PIPE):
         PipelineCommand.__init__(
-                self, [GPG_BIN, '-e', '-z', '0', '-r', key], stdin, stdout)
+                self, [GPG_BIN, '-e', '--no-tty', '-z', '0', '-r', key], stdin, stdout)
 
 
 class GPGDecryptionFilter(PipelineCommand):
@@ -255,4 +255,4 @@ class GPGDecryptionFilter(PipelineCommand):
     """
     def __init__(self, stdin=PIPE, stdout=PIPE):
         PipelineCommand.__init__(
-                self, [GPG_BIN, '-d', '-q', '--batch'], stdin, stdout)
+                self, [GPG_BIN, '-d', '-q', '--batch', '--no-tty'], stdin, stdout)
